@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural Experts: Mixture of Experts for Implicit Neural Representations</title>
+    <meta name="author"
+          content="Yizhak Ben-Shabat (Itzik), Chamin Hewa Koneputugodage, Sameera Ramasinghe, and Stephen Gould">
+    <meta name="description"
+          content="Neural Experts NeurIPS paper project page">
+    <meta name="keywords" content="Neural Experts,  INR, Surface Reconstruction, Point Clouds, Mixture of Experts, MoE">
+
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+
+<section class="hero">
+    <div class="default-container">
+        <div class="title-block">
+            <h1 class="title">Neural Experts: Mixture of Experts for Implicit Neural Representations</h1>
+            <h2 class="venue">NeurIPS 2024</h2>
+        </div>
+        <div class="author-section">
+            <span class="author">
+                <a href="https://www.itzikbs.com/">
+                    <img class="image" src="./images/itzik.jpg" alt="Yizhak Ben-Shabat (Itzik)">
+                </a> <br/>
+                <a href="https://www.itzikbs.com/">Yizhak Ben-Shabat <br> (Itzik)*</a><sup>1</sup>
+            </span>
+            <span class="author">
+                <a href="https://www.linkedin.com/in/chamin-hewa-koneputugodage-b3ba17148/">
+                    <img class="image" src="./images/chamin.jpg" alt="Chamin Hewa Koneputugodage">
+                </a> <br/>
+                <a href="https://www.linkedin.com/in/chamin-hewa-koneputugodage-b3ba17148/">Chamin Hewa
+                    <br> Koneputugodage*</a><sup>1</sup>
+            </span>
+            <span class="author">
+                <a href="https://www.linkedin.com/in/sameeraramasinghe/)">
+                    <img class="image" src="./images/sameera.jpg" alt="Sameera Ramasinghe">
+                </a> <br/>
+                <a href="https://www.linkedin.com/in/sameeraramasinghe/">Sameera Ramasinghe <br> (Itzik)*</a><sup>2</sup>
+            </span>
+            <span class="author">
+                <a href="https://cecs.anu.edu.au/people/stephen-gould/">
+                    <img class="image" src="./images/steve.jpg" alt="Stephen Gould">
+                </a> <br/>
+                <a href="https://cecs.anu.edu.au/people/stephen-gould/">Stephen Gould </a><sup></sup><br><a>&nbsp</a>
+            </span>
+        </div>
+
+        <div class="affiliation">
+            <sup>1</sup><a>The Australian National University</a>
+            &emsp;
+            <sup>2</sup><a>Australian Institute of Machine Learning</a><br>
+            <a>*Equal Contribution</a>
+        </div>
+
+        <div class="links">
+            <span class="link-block">
+                <a href="https://arxiv.org/pdf/2106.10811.pdf" class="button-80">
+                    <img class="link-icon" src="./images/pdf.svg" alt="Paper">
+                    <span> Paper</span>
+                </a>
+            </span>
+            <span class="link-block">
+                <a href="https://arxiv.org/abs/2106.10811" class="button-80">
+                    <img class="link-icon" src="./images/arxiv.png" alt="arxiv">
+                    <span> Arxiv</span>
+                </a>
+            </span>
+            <!-- <span class="link-block">
+                <a href="coming_soon.html" class="button-80">
+                    <img class="link-icon" src="./images/jupyter.svg" alt="Jupter Notebook">
+                    <span> Jupter Notebook</span>
+                </a>
+            </span> -->
+            <span class="link-block">
+                <a href="https://github.com/sitzikbs/Neural-Experts" class="button-80">
+                    <img class="link-icon" src="./images/github.svg" alt="Code">
+                    <span> Code</span>
+                </a>
+            </span>
+            <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=bQWpRyM9wYM&list=PLD-7XrNHCcFLDQ6KH7w2xFLe0JWvalYfr&index=3&ab_channel=anucvml" class="button-80">
+                    <img class="link-icon" src="./images/youtube.svg" alt="Video">
+                    <span> Video</span>
+                </a>
+            </span> -->
+            <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=w2xC2JluMlk&ab_channel=TalkingPapersPodcast" class="button-80">
+                    <img class="link-icon" src="./images/youtube.svg" alt="Video">
+                    <span> Podcast</span>
+                </a>
+            </span> -->
+        </div>
+
+    </div>
+</section>
+
+<section class="teaser-results">
+    <div class="default-container">
+        <div class="srb-comp-row">
+            <div class="srb-vid-column" style="overflow: hidden;">
+                <video class="srb-video"  controls autoplay muted loop>
+                    <source src="./videos/anchor-comp.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="srb-vid-column" style="overflow: hidden;">
+                <video class="srb-video"  controls autoplay muted loop>
+                    <source src="./videos/lord-quas-comp.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="srb-vid-column" style="overflow: hidden;">
+                <video class="srb-video"  controls autoplay muted loop>
+                    <source src="./videos/dc-comp.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <p>
+            Results on the Surface Reconstruction Benchmark. DiGS, <em>which does not use normals</em>, does as well as
+            methods that use normals (SIREN shown here) and much better than methods that do not (IGR wo n shown here).
+        </p>
+        <div class="scene-row" style="overflow: hidden;">
+            <video class="scene-video"  controls autoplay muted loop>
+                <source src="./videos/scene.mp4" type="video/mp4">
+            </video>
+        </div>
+        <p>
+            Results on the scene from SIREN's paper. To be able to fit complex scenes, normal supervision is essential for
+            INR based methods. Here we demonstate that our method is able to still work well without normals, while SoTA
+            method SIREN has a lot of ghost geometry in the absence of normal supervision.
+        </p>
+    </div>
+</section>
+
+
+<section class="abstract-section">
+    <div class="default-container">
+        <div class="abstract">
+            <h2 class="abstract-title">Abstract</h2>
+            <p class="abstract-text">
+                <strong> Shape implicit neural representations</strong> (INRs) have recently shown to be effective in shape
+                analysis  and reconstruction tasks.
+                Existing INRs require point coordinates to learn the implicit level sets of the shape. When a normal
+                vector is available for each point, a higher fidelity representation can be learned, however <strong>normal
+                vectors are often not provided</strong> as raw data. Furthermore, the method's initialization has been
+                shown to play a crucial role for surface reconstruction. <br>
+                In this paper, we propose a <strong>divergence guided shape representation</strong> learning approach that
+                does not require normal vectors as input. We show that incorporating a soft constraint on the divergence
+                of the distance function favours smooth solutions that reliably orients gradients to match the unknown
+                normal at each point, in some cases even better than approaches that use ground truth normal vectors
+                directly. Additionally, we introduce a <strong>novel geometric initialization method for sinusoidal INRs
+                </strong> that further improves convergence to the desired solution. We evaluate the effectiveness of our
+                approach on the task of <strong>surface reconstruction and shape space learning</strong> and show SOTA
+                performance compared to other unoriented methods.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="main-video-section">
+    <div class="default-container">
+        <div class="main-video">
+            <h2 class="main-video-title">Video</h2>
+            <div class="main-video-div">
+                <!-- <iframe src="https://www.youtube.com/embed/TcbErocpnak?rel=0&amp;showinfo=0" -->
+                <iframe src="https://www.youtube.com/embed/bQWpRyM9wYM?rel=0&amp;showinfo=0"
+                        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+            <!-- <p style="text-align: justify"><b>Coming Soon!</b></p> -->
+        </div>
+    </div>
+
+<section class="explanation-section">
+    <div class="default-container">
+        <div class="explanation">
+            <h2 class="explanation-title">Divergence Guided Shape INRs</h2>
+            <p class="test">
+                We tackle the problem of point cloud reconstruction in the
+                <strong>absence of normal information</strong>.
+                We use a <strong>smooth-to-sharp approach</strong> that keeps the gradient vector field stay
+                highly consistent during training. It has four stages (see
+                <a href="#training-procedure" style="text-decoration: none">Training Procedure</a> video below)
+                <ul>
+                    <li>Geometric Initialization</li>
+                    <li>High Divergence Phase</li>
+                    <li>Annealing Divergence Phase</li>
+                    <li>Low Divergence Phase</li>
+                  </ul>
+                In order to implement this training procedure, we have two main contributions: our
+                <strong>Geometric Initialisation</strong> and our <strong>Divergence Loss</strong>.
+            </p>
+            <h3>Training Procedure</h3>
+            <!-- <div class="anchor-training-row">
+                <img class="anchor-training-image" src="./images/anchor-training-comp.png" alt="anchor-training-comp">
+            </div> -->
+            <div class="shapespace-row" id="training-procedure" style="overflow: hidden;">
+                <video class="shapespace-video"  controls autoplay muted loop>
+                    <source src="./videos/Gargoyle.mp4" type="video/mp4">
+                </video>
+            </div>
+            <!-- <div class="shapespace-row" style="overflow: hidden;">
+                <video class="shapespace-video"  controls autoplay muted loop>
+                    <source src="./videos/dc.mp4" type="video/mp4">
+                </video>
+            </div> -->
+            <h3>Divergence Loss</h3>
+            <div class="divergence-expl">
+                <img class="divergence-expl-img" src="./images/digs_teaser_wbg.png" alt="teaser">
+            </div>
+            <p>
+                Motivated by the observation that ground truth signed distance functions have <strong>low divergence nearly
+                everywhere</strong> (see above figure), we incorporate this geometric prior. Specifically we use it as a
+                soft constraint during training, which keeps our gradient vector field stay highly consistent,
+                and <strong>anneal it as training progresses</strong>. We show that this
+                loss is essentially a regularization term, minimising the Dirichlet Energy or "complexity" of the
+                learnt function. We also demonstrate in toy examples that this is more effective that just the
+                Eikonal term in both reducing the Dirichlet Energy and in obeying the Eikonal constraint.
+            </p>
+            <h3>Geometric Initialisation</h3>
+            <div class="geom-init-row">
+                <div class="geom-init-column" style="overflow: hidden;">
+                    <img class="init-img" src="./images/sdf_128_siren_init.png" alt="siren">
+                    <br> SIREN
+                </div>
+                <div class="geom-init-column" style="overflow: hidden;">
+                    <img class="init-img" src="./images/sdf_128_geometric_sine_init.png" alt="geometric-sine">
+                    <br> Our Geometric Sine
+                </div>
+                <div class="geom-init-column" style="overflow: hidden;">
+                    <img class="init-img" src="./images/sdf_128_mfgi_init.png" alt="mfgi">
+                    <br> Our MFGI
+                </div>
+            </div>
+            <p>
+                We also provide two geometric initializations for SIRENs. Similar to previous geometric initializations
+                (e.g. SAL) we introduce <strong>a spherical initialization that works for SIRENs</strong>. Such
+                initializations initialise the function to have an SDF for a sphere, thus biasing it to have a
+                good eikonal loss, and to have positive SDF away from the object while negative SDF around
+                the center of the object's bounding box.  <br>
+                However this initialization biases the network to learn lower frequency solutions, so we also introduce a
+                modification, <strong>multi-frequency geometric initialization (MFGI)</strong>, which <strong>keeps the
+                model's ability to have high frequencies</strong> while maintaining the previous properties.
+            </p>
+            <br>
+            <h3>Additional Results</h3>
+            <div class="shapespace-row" style="overflow: hidden;">
+                <video class="shapespace-video"  controls autoplay muted loop>
+                    <source src="./videos/shapespace.mp4" type="video/mp4">
+                </video>
+            </div>
+            <p>
+                A much more challenging task than scene reconstruction is the shapespace task, where a single network
+                learns to <strong>represent a space of related objects</strong> by training to reconstruct on a subset of
+                such objects' point clouds (the pink frames). When using normals (shown here), our method is able to maintain
+                a more consistent shape (e.g. minimal loss of limb structure) and less ghost geometry that other methods,
+                but oversmooths fine detail (e.g. the face). When not using normals, our method is still able to learn,
+                while other methods are not able to.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="thanks-section">
+    <div class="default-container">
+        <div class="thanks">
+            <h2 class="thanks-title">Acknowledgements</h2>
+            <p class="thanks-text">
+                This project has received funding from the European Union's Horizon 2020 research and innovation
+                programme under the Marie Sklodowska-Curie grant agreement No 893465
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="reference-section">
+    <div class="default-container">
+        <div class="ref">
+            <h2 class="ref-title">BibTeX</h2>
+            <div class="bibtex">
+<pre><code>@inproceedings{ben2022digs,
+    title={DiGS: Divergence guided shape implicit neural representation for unoriented point clouds},
+    author={Ben-Shabat, Yizhak and Hewa Koneputugodage, Chamin and Gould, Stephen},
+    booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+    pages={19323--19332},
+    year={2022}
+  }</code></pre>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
