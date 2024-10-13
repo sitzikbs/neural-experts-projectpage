@@ -47,8 +47,8 @@
     text-align: center;
 }
 
-.author a:link, a:visited { 
-    text-decoration: none; 
+.author a:link, a:visited {
+    text-decoration: none;
     color:dodgerblue}
 
 .author a:hover, a:active  {
@@ -318,4 +318,11 @@
 
 pre {
     margin: 2%;
+}
+
+img {
+    max-width: 100%; /* Ensures the image never exceeds the width of its container */
+    height: auto;    /* Keeps the aspect ratio of the image */
+    display: block;  /* Removes space below the image */
+    margin: 0 auto;  /* Optional: Centers the image horizontally */
 }
