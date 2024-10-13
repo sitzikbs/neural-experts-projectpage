@@ -165,22 +165,30 @@
 
 
             <br>
-            <h3>The manager network</h3>
+            <h3>The Manager</h3>
             <p>
               The manager network provides more control over the learned representation.
                A manager's assignment change can accomodiate sharp discontinuity in the data.
                It can also be pretrained using some prior (e.g. segmentation). Our experiments show that a random manager initialization performs best as the underlaying segmentation appears naturally from the training process.
-              <img class="image" src="./images/manager_pretraining.jpg" alt="manager_pretraining">
+              <img class="image" src="./images/manager_pretraining.png" alt="manager_pretraining">
               Manager pretraining. Visualizing the experts selected by the manager after the pretraining
               stage (top row) and after the full network training (bottom row) for different pretraining ablations.
             </p>
             <h3>Additional Results</h3>
-            
-            <img class="image" src="./images/3d_recon_results.jpg" alt="3d reconstruction results">
+            We show the effectiveness or Neural Experts on RGB image reconstruction, audio reconstruction and 3D surface reconstruction.
+
+            <img class="image" src="./images/3d_recon_results.png" alt="3d reconstruction results">
             <strong>3D surface reconstruction. </strong> Results on the Thai Statue shape. Our method noticeably
             captures more detail in the toes, nostrils, and eye. The error colormap shows that our method produces
             a mesh with far less large errors (lighter indicates higher distance to the ground truth surface), and
             the expert segmentation shows our method provides a subdivision of the space.
+
+            <br>
+            <img class="image" src="./images/audio_recon.png" alt="audio reconstruction results">
+            <strong>Audio reconstruction visualization. </strong> Two speakers audio reconstruction is presented.
+            Within each waveform block, the rows represent the ground truth, reconstruction, and error visu-
+            alization from top to bottom. For our Neural Experts we color code the different experts on the
+            reconstructed waveform
 
         </div>
     </div>
