@@ -39,7 +39,7 @@
                 <a href="https://www.linkedin.com/in/sameeraramasinghe/)">
                     <img class="image" src="./images/sameera.jpg" alt="Sameera Ramasinghe">
                 </a> <br/>
-                <a href="https://www.linkedin.com/in/sameeraramasinghe/">Sameera Ramasinghe <br> (Itzik)*</a><sup>2</sup>
+                <a href="https://www.linkedin.com/in/sameeraramasinghe/">Sameera Ramasinghe </a><sup>2</sup>
             </span>
             <span class="author">
                 <a href="https://cecs.anu.edu.au/people/stephen-gould/">
@@ -102,35 +102,27 @@
     <div class="default-container">
         <div class="srb-comp-row">
             <div class="srb-vid-column" style="overflow: hidden;">
-                <video class="srb-video"  controls autoplay muted loop>
-                    <source src="./videos/anchor-comp.mp4" type="video/mp4">
-                </video>
+              <div class="divergence-expl">
+                  <img class="divergence-expl-img" src="./images/inr.png" alt="teaser">
+              </div>
             </div>
             <div class="srb-vid-column" style="overflow: hidden;">
-                <video class="srb-video"  controls autoplay muted loop>
-                    <source src="./videos/lord-quas-comp.mp4" type="video/mp4">
-                </video>
+              <div class="divergence-expl">
+                  <img class="divergence-expl-img" src="./images/inr_moe.png" alt="teaser">
+              </div>
             </div>
             <div class="srb-vid-column" style="overflow: hidden;">
-                <video class="srb-video"  controls autoplay muted loop>
-                    <source src="./videos/dc-comp.mp4" type="video/mp4">
-                </video>
+              <div class="divergence-expl">
+                  <img class="divergence-expl-img" src="./images/neural_experts.png" alt="teaser">
+              </div>
             </div>
         </div>
         <p>
-            Results on the Surface Reconstruction Benchmark. DiGS, <em>which does not use normals</em>, does as well as
-            methods that use normals (SIREN shown here) and much better than methods that do not (IGR wo n shown here).
+          Illustration comparing between INR architectures for traditional INR (left), Vanilla MoE (middle)
+          INR and the proposed Neural Experts (right). Two key elements of our approach include the conditioning
+          and pretraining of the manager that improve signal reconstruction with fewer parameters.
         </p>
-        <div class="scene-row" style="overflow: hidden;">
-            <video class="scene-video"  controls autoplay muted loop>
-                <source src="./videos/scene.mp4" type="video/mp4">
-            </video>
-        </div>
-        <p>
-            Results on the scene from SIREN's paper. To be able to fit complex scenes, normal supervision is essential for
-            INR based methods. Here we demonstate that our method is able to still work well without normals, while SoTA
-            method SIREN has a lot of ghost geometry in the absence of normal supervision.
-        </p>
+
     </div>
 </section>
 
@@ -140,26 +132,20 @@
         <div class="abstract">
             <h2 class="abstract-title">Abstract</h2>
             <p class="abstract-text">
-                <strong> Shape implicit neural representations</strong> (INRs) have recently shown to be effective in shape
-                analysis  and reconstruction tasks.
-                Existing INRs require point coordinates to learn the implicit level sets of the shape. When a normal
-                vector is available for each point, a higher fidelity representation can be learned, however <strong>normal
-                vectors are often not provided</strong> as raw data. Furthermore, the method's initialization has been
-                shown to play a crucial role for surface reconstruction. <br>
-                In this paper, we propose a <strong>divergence guided shape representation</strong> learning approach that
-                does not require normal vectors as input. We show that incorporating a soft constraint on the divergence
-                of the distance function favours smooth solutions that reliably orients gradients to match the unknown
-                normal at each point, in some cases even better than approaches that use ground truth normal vectors
-                directly. Additionally, we introduce a <strong>novel geometric initialization method for sinusoidal INRs
-                </strong> that further improves convergence to the desired solution. We evaluate the effectiveness of our
-                approach on the task of <strong>surface reconstruction and shape space learning</strong> and show SOTA
-                performance compared to other unoriented methods.
+              Implicit neural representations (INRs) have proven effective in various tasks including image, shape, audio, and video reconstruction.
+              These INRs typically learn the implicit field from sampled input points. This is often done using a single network for the entire domain,
+              imposing many global constraints on a single function. In this paper, we propose a mixture of experts (MoE) implicit neural representation
+              approach that enables learning local piece-wise continuous functions that simultaneously learns to subdivide the domain and fit locally.
+              We show that incorporating a mixture of experts architecture into existing INR formulations provides a boost in speed, accuracy, and memory requirements.
+              Additionally, we introduce novel conditioning and pretraining methods for the gating network that improves convergence to the desired solution.
+              We evaluate the effectiveness of our approach on multiple reconstruction tasks, including surface reconstruction, image reconstruction,
+              and audio signal reconstruction and show improved performance compared to non-MoE methods.
             </p>
         </div>
     </div>
 </section>
 
-<section class="main-video-section">
+<!-- <section class="main-video-section">
     <div class="default-container">
         <div class="main-video">
             <h2 class="main-video-title">Video</h2>
@@ -170,7 +156,7 @@
             </div>
             <!-- <p style="text-align: justify"><b>Coming Soon!</b></p> -->
         </div>
-    </div>
+    </div> -->
 
 <section class="explanation-section">
     <div class="default-container">
@@ -262,7 +248,7 @@
     </div>
 </section>
 
-<section class="thanks-section">
+<!-- <section class="thanks-section">
     <div class="default-container">
         <div class="thanks">
             <h2 class="thanks-title">Acknowledgements</h2>
@@ -272,19 +258,18 @@
             </p>
         </div>
     </div>
-</section>
+</section> -->
 
 <section class="reference-section">
     <div class="default-container">
         <div class="ref">
             <h2 class="ref-title">BibTeX</h2>
             <div class="bibtex">
-<pre><code>@inproceedings{ben2022digs,
-    title={DiGS: Divergence guided shape implicit neural representation for unoriented point clouds},
-    author={Ben-Shabat, Yizhak and Hewa Koneputugodage, Chamin and Gould, Stephen},
-    booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-    pages={19323--19332},
-    year={2022}
+<pre><code>@inproceedings{ben2024neuralexperts,
+    title={Neural Experts: Mixture of Experts for Implicit Neural Representations},
+    author={Ben-Shabat, Yizhak and Hewa Koneputugodage, Chamin and Ramasinghe, Sameera and Gould, Stephen},
+    booktitle={Advances in Neural Information Processing Systems (NeurIPS},
+    year={2024}
   }</code></pre>
             </div>
         </div>
