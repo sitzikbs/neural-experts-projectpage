@@ -100,23 +100,7 @@
 
 <section class="teaser-results">
     <div class="default-container">
-        <div class="srb-comp-row">
-            <div class="srb-vid-column" style="overflow: hidden;">
-              <div class="divergence-expl">
-                  <img class="divergence-expl-img" src="./images/inr.png" alt="teaser">
-              </div>
-            </div>
-            <div class="srb-vid-column" style="overflow: hidden;">
-              <div class="divergence-expl">
-                  <img class="divergence-expl-img" src="./images/inr_moe.png" alt="teaser">
-              </div>
-            </div>
-            <div class="srb-vid-column" style="overflow: hidden;">
-              <div class="divergence-expl">
-                  <img class="divergence-expl-img" src="./images/neural_experts.png" alt="teaser">
-              </div>
-            </div>
-        </div>
+        <img class="divergence-expl-img" src="./images/neural_experts.png" alt="teaser">
         <p>
           Illustration comparing between INR architectures for traditional INR (left), Vanilla MoE (middle)
           INR and the proposed Neural Experts (right). Two key elements of our approach include the conditioning
@@ -167,10 +151,12 @@
             <br>
             <h3>The Manager</h3>
             <p>
-              The manager network provides more control over the learned representation.
+              The manager network provides control over the learned representation. It essentially assigns different parts of the coordinate space to different sub-networks (experts).
                A manager's assignment change can accomodiate sharp discontinuity in the data.
                It can also be pretrained using some prior (e.g. segmentation). Our experiments show that a random manager initialization performs best as the underlaying segmentation appears naturally from the training process.
+
               <img class="image" src="./images/manager_pretraining.png" alt="manager_pretraining">
+
               Manager pretraining. Visualizing the experts selected by the manager after the pretraining
               stage (top row) and after the full network training (bottom row) for different pretraining ablations.
             </p>
@@ -178,13 +164,16 @@
             We show the effectiveness or Neural Experts on RGB image reconstruction, audio reconstruction and 3D surface reconstruction.
 
             <img class="image" src="./images/3d_recon_results.png" alt="3d reconstruction results">
+
             <strong>3D surface reconstruction. </strong> Results on the Thai Statue shape. Our method noticeably
             captures more detail in the toes, nostrils, and eye. The error colormap shows that our method produces
             a mesh with far less large errors (lighter indicates higher distance to the ground truth surface), and
             the expert segmentation shows our method provides a subdivision of the space.
 
             <br>
+
             <img class="image" src="./images/audio_recon.png" alt="audio reconstruction results">
+
             <strong>Audio reconstruction visualization. </strong> Two speakers audio reconstruction is presented.
             Within each waveform block, the rows represent the ground truth, reconstruction, and error visu-
             alization from top to bottom. For our Neural Experts we color code the different experts on the
