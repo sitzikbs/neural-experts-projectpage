@@ -84,6 +84,7 @@
 
 .link-icon {
     height: 0.75em;
+    margin-right: 5px;
     /* opacity: 0.75; */
     /* background-color: #ffffff; */
 }
@@ -113,6 +114,8 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  display: inline-flex;
+  align-items: center;
 }
 
 .button-80:not(:disabled):hover {
