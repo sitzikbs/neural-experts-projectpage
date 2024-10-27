@@ -12,6 +12,7 @@
     <meta name="keywords" content="Neural Experts,  INR, Surface Reconstruction, Point Clouds, Mixture of Experts, MoE">
 
     <link rel="stylesheet" href="./css/index.css">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"></script> <!-- CDN link -->
 </head>
 <body>
 
@@ -101,8 +102,8 @@
 <section class="teaser-results">
     <div class="default-container">
         <img class="divergence-expl-img" src="./images/neural_experts.png" alt="teaser">
-        <p>
-          Illustration of the Neural Experts architecture. It consists of a joint expert encoding, experts, and manager networks.
+        <p style="text-align: justify">
+          <strong>Illustration of the Neural Experts architecture.</strong> It consists of a joint expert encoding, experts, and manager networks.
             Two additional key elements of our approach include the conditioning
           and pretraining of the manager that improve signal reconstruction with fewer parameters.
         </p>
@@ -142,13 +143,150 @@
 <!--    </div>-->
 <!--</section>-->
 
+
+
+<section class="explanation-section">
+    <div class="default-container" style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+        <div class="explanation">
+            <h2 class="explanation-title">3D Reconstruction Results </h2>
+            <p>
+                Our method noticeably captures details (e.g. in the toes, nostrils, and eye of the thai statue).
+                The expert selection (provided by the manager) provides some level of segmentation by subdividing space.
+                The error colormap shows that our reconstruction produces small errors (lighter indicates higher distance to the ground truth surface).
+            </p>
+        </div>
+        <!-- Model Viewer 1 -->
+        <div class="model-viewer-container">
+            <h5>Armadillo</h5>
+            <div class="model-viewer-box">
+                <model-viewer
+                    id="modelViewer1"
+                    alt="Armadillo"
+                    src="meshes/armadillo/mesh.glb"
+                    exposure=".5"
+                    camera-orbit="0deg 75deg 105%"
+                    auto-rotate
+                    camera-controls>
+                </model-viewer>
+            </div>
+            <div class="buttons">
+                <button onclick="switchModel('modelViewer1', 'meshes/armadillo/mesh.glb')">Mesh</button>
+                <button onclick="switchModel('modelViewer1', 'meshes/armadillo/errors.glb')">Error</button>
+                <button onclick="switchModel('modelViewer1', 'meshes/armadillo/experts.glb')">Experts</button>
+            </div>
+        </div>
+
+        <!-- Model Viewer 2 -->
+        <div class="model-viewer-container">
+            <h5>Thai Statue</h5>
+            <div class="model-viewer-box">
+                <model-viewer
+                    id="modelViewer2"
+                    alt="Thai Statue"
+                    src="meshes/thai_statue/mesh.glb"
+                    exposure=".5"
+                    camera-orbit="0deg 75deg 105%"
+                    auto-rotate
+                    camera-controls>
+                </model-viewer>
+            </div>
+            <div class="buttons">
+                <button onclick="switchModel('modelViewer2', 'meshes/thai_statue/mesh.glb')">Mesh</button>
+                <button onclick="switchModel('modelViewer2', 'meshes/thai_statue/errors.glb')">Error</button>
+                <button onclick="switchModel('modelViewer2', 'meshes/thai_statue/experts.glb')">Experts</button>
+            </div>
+        </div>
+
+        <!-- Model Viewer 3 -->
+        <div class="model-viewer-container">
+            <h5>Dragon</h5>
+            <div class="model-viewer-box">
+                <model-viewer
+                    id="modelViewer3"
+                    alt="Dragon"
+                    src="meshes/dragon/mesh.glb"
+                    exposure=".5"
+                    camera-orbit="0deg 75deg 105%"
+                    auto-rotate
+                    camera-controls>
+                </model-viewer>
+            </div>
+            <div class="buttons">
+                <button onclick="switchModel('modelViewer3', 'meshes/dragon/mesh.glb')">Mesh</button>
+                <button onclick="switchModel('modelViewer3', 'meshes/dragon/errors.glb')">Error</button>
+                <button onclick="switchModel('modelViewer3', 'meshes/dragon/experts.glb')">Experts</button>
+            </div>
+        </div>
+
+        <!-- Model Viewer 4 -->
+        <div class="model-viewer-container">
+            <h5>Lucy</h5>
+            <div class="model-viewer-box">
+                <model-viewer
+                    id="modelViewer4"
+                    alt="Lucy"
+                    src="meshes/lucy/mesh.glb"
+                    exposure=".5"
+                    camera-orbit="0deg 75deg 105%"
+                    auto-rotate
+                    camera-controls>
+                </model-viewer>
+            </div>
+            <div class="buttons">
+                <button onclick="switchModel('modelViewer4', 'meshes/lucy/mesh.glb')">Mesh</button>
+                <button onclick="switchModel('modelViewer4', 'meshes/lucy/errors.glb')">Error</button>
+                <button onclick="switchModel('modelViewer4', 'meshes/lucy/experts.glb')">Experts</button>
+            </div>
+        </div>
+
+    </div>
+    <div class="default-container">
+        <div class="explanation">
+            <h2 class="explanation-title">Image Reconstruction Results </h2>
+            <img class="image" src="./images/img_reconstruction_inr.png" alt="image reconstruction results">
+            <p>
+                 Qualitative (left) and quantitative (right) results.
+                Showing image reconstruction (top), gradients (middle), and laplacian (bottom) for
+                (a) GT, (b) SoftPlus, (c) SoftPlus Wider, (d) Our SoftPlus MoE,  (e) SIREN, (f) SIREN Wider, (g) Naive MoE, and (h) Our SIREN Neural Experts.
+                The quantitative results (right) report PSNR as training progresses and show that our Neural Experts architecture with Sine activations outperforms all baselines.
+            </p>
+        </div>
+    </div>
+
+    <div class="default-container">
+        <div class="explanation">
+            <h2 class="explanation-title">Audio Reconstruction Results </h2>
+            <img class="image" src="./images/audio_recon.png" alt="audio reconstruction results">
+            <p>
+                Two speakers audio reconstruction is presented. Within each waveform block, the rows represent the ground truth, reconstruction, and error visu-
+                alization from top to bottom. For our Neural Experts we color code the different experts on the reconstructed waveform.
+            </p>
+        </div>
+    </div>
+</section>
+
+<script>
+    function switchModel(viewerId, modelSrc) {
+        const modelViewer = document.getElementById(viewerId);
+        modelViewer.src = modelSrc; // Change the src attribute to the new model file
+    }
+</script>
+<!-- <section class="thanks-section">
+    <div class="default-container">
+        <div class="thanks">
+            <h2 class="thanks-title">Acknowledgements</h2>
+            <p class="thanks-text">
+                This project has received funding from the European Union's Horizon 2020 research and innovation
+                programme under the Marie Sklodowska-Curie grant agreement No 893465
+            </p>
+        </div>
+    </div>
+</section> -->
+
 <section class="explanation-section">
     <div class="default-container">
         <div class="explanation">
-            <h2 class="explanation-title">Mixture of Experts for INRs</h2>
-
-
-
+            <h2 class="explanation-title">Mixture of Experts for INRs - Insights</h2>
             <br>
             <h3>The Manager</h3>
             <p>
@@ -161,39 +299,11 @@
               Manager pretraining. Visualizing the experts selected by the manager after the pretraining
               stage (top row) and after the full network training (bottom row) for different pretraining ablations.
             </p>
-            <h3>Additional Results</h3>
-            We show the effectiveness or Neural Experts on RGB image reconstruction, audio reconstruction and 3D surface reconstruction.
-
-            <img class="image" src="./images/3d_recon_results.png" alt="3d reconstruction results">
-
-            <strong>3D surface reconstruction. </strong> Results on the Thai Statue shape. Our method noticeably
-            captures more detail in the toes, nostrils, and eye. The error colormap shows that our method produces
-            a mesh with far less large errors (lighter indicates higher distance to the ground truth surface), and
-            the expert segmentation shows our method provides a subdivision of the space.
-
             <br>
-
-            <img class="image" src="./images/audio_recon.png" alt="audio reconstruction results">
-            <strong>Audio reconstruction visualization. </strong> Two speakers audio reconstruction is presented.
-            Within each waveform block, the rows represent the ground truth, reconstruction, and error visu-
-            alization from top to bottom. For our Neural Experts we color code the different experts on the
-            reconstructed waveform
-
         </div>
     </div>
+
 </section>
-
-<!-- <section class="thanks-section">
-    <div class="default-container">
-        <div class="thanks">
-            <h2 class="thanks-title">Acknowledgements</h2>
-            <p class="thanks-text">
-                This project has received funding from the European Union's Horizon 2020 research and innovation
-                programme under the Marie Sklodowska-Curie grant agreement No 893465
-            </p>
-        </div>
-    </div>
-</section> -->
 
 <section class="reference-section">
     <div class="default-container">
@@ -210,6 +320,8 @@
         </div>
     </div>
 </section>
+
+
 
 </body>
 </html>
